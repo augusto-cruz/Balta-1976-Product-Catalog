@@ -4,7 +4,6 @@ using ProductCatalog.Data;
 using ProductCatalog.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace ProductCatalog.Controllers
 {
