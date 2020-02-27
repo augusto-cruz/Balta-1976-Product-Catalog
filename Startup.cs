@@ -35,6 +35,7 @@ namespace ProductCatalog
             // Adicionando dependencia do ProductRepository para a controller Product
             services.AddTransient<ProductRepository, ProductRepository>();
 
+            // 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Product Catalog", Version = "v1" });
@@ -56,7 +57,7 @@ namespace ProductCatalog
             
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Product Catalog V1");
             });
         }
     }

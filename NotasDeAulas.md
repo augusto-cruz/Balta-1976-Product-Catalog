@@ -309,18 +309,28 @@ Models - Representam o banco de dados em objetos
             app.UseResponseCompression();
 
 
-#### Documentação 
+#### Documentação com Swagger
 
       ► Instalando:
 
-        - dotnet add package Microsoft.
+        - dotnet add package package Swashbuckle.AspNetCore
 
     ► Implementando:
 
         Na Startup, metodo ConfigureServices:
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Product Catalog", Version = "v1" });
+            });
            
 
         Na Startup, metodo Configure:
 
-          
+            app.UseSwagger();
+
+            // Visualizacao HTML, CSS
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Product Catalog V1");
+            });
