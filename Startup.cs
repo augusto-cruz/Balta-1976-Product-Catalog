@@ -22,14 +22,18 @@ namespace ProductCatalog
    
         public void ConfigureServices(IServiceCollection services)
         {
+            // Middleware Mvc
+            services.AddMvc();
+
+            // Middleware de Compressao
+            // Compressiona as respostas
+            services.AddResponseCompression();
+
             services.AddDbContext<StoreDataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("StoreDataContext")));
 
             // Adicionando dependencia do ProductRepository para a controller Product
             services.AddTransient<ProductRepository, ProductRepository>();
-
-            // Middleware Mvc
-            services.AddMvc();
 
             services.AddSwaggerGen(c =>
             {
@@ -46,11 +50,10 @@ namespace ProductCatalog
 
             app.UseMvc();
 
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
+            app.UseResponseCompression();
 
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
+            app.UseSwagger();
+            
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");

@@ -264,9 +264,63 @@ Models - Representam o banco de dados em objetos
                 -> Usa-se AddTransient pois toda vez que se pedir um novo ProductRepository ele deve criar uma nova instância do ProductRepository.
 
 
-#### Queries
+#### Queries no EF Core
+
+    - Usamos LINQ (Language Integrated Query) para fazer Queries no banco.
+    - Devemos retornar uma ViewModel ao invés de uma Model para trazer só o que precisamos.
+    - Utilizar Sempre AsNoTracking().
 
 
+#### Versionamento
+
+    - Usá-se versionamente para se poder fazer uma alteração no end point ou modelos sem afetar os apps que consomem essa api.
 
 
+##### Cache
 
+    - Pode-se usar cache no front ou no back (server).
+    - Pode-se usar quando certos dados não mudam ou mudam com pouca frequência.
+
+    ► Usando:
+
+        - Adicionar anotação em cima do endpoint
+
+        [ResponseCache(Duration = 60)] // Irá verificar no Server
+
+        [ResponseCache(Location = ResponseCacheLocation.Client, Duration = 60)] // Irá verificar direto no client
+
+
+#### Compressão da Resposta
+
+    ► Instalando:
+
+        - dotnet add package Microsoft.AspNetCore.ResponseCompression
+
+    ► Implementando:
+
+        Na Startup, metodo ConfigureServices:
+
+            // Middleware de Compressao
+            // Compressiona as respostas
+            services.AddResponseCompression();
+
+        Na Startup, metodo Configure:
+
+            app.UseResponseCompression();
+
+
+#### Documentação 
+
+      ► Instalando:
+
+        - dotnet add package Microsoft.
+
+    ► Implementando:
+
+        Na Startup, metodo ConfigureServices:
+
+           
+
+        Na Startup, metodo Configure:
+
+          

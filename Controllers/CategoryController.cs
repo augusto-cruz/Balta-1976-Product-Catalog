@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
 using ProductCatalog.Data;
 using ProductCatalog.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ProductCatalog.Controllers
 {
@@ -23,6 +23,7 @@ namespace ProductCatalog.Controllers
         }
 
         [HttpGet]
+        [ResponseCache(Duration = 60)]
         public IEnumerable<Category> Get() 
         {
             // Retorna uma lista com todas as Categorias
